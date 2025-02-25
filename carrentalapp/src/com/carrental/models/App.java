@@ -17,6 +17,8 @@ public class App {
         System.out.println("4.Delete Rental");
         System.out.println("5.Search Rental by Car Model");
         System.out.println("6.Filter Rental by Date");
+        System.out.println("7.Exit");
+        System.out.println("Choose an option: ");
 
         Scanner sc=new Scanner(System.in);
         int response=sc.nextInt();
@@ -51,10 +53,70 @@ public class App {
             case 2:
                 System.out.println("Displaying all the details...");
                 CarRentalManager.displayAllRentals();
+                break;
+
+            case 3:
+                System.out.println("Enter your already given name: ");
+                String OldcustomerName=sc.nextLine();
+
+                System.out.println("Enter your existing rental booking date: ");
+                String OldrentalDate=sc.nextLine();
+
+                System.out.println("Enter the new customer name: ");
+                String newCustomerName=sc.nextLine();
+
+                System.out.println("Enter the new car model name: ");
+                String newCarModel=sc.nextLine();
+
+                System.out.println("Enter the new rental date: ");
+                String newRentalDate=sc.nextLine();
+ 
+                System.out.println("Enter the new return date: ");
+                String newReturnDate=sc.nextLine();
+
+                System.out.println("Enter the new rental price: ");
+                double newRentalPrice=sc.nextDouble();
+
+                sc.nextLine();
+                
+                CarRental updateCarRental=new CarRental();
+                updateCarRental.CarRentalDetails(newCustomerName, newCarModel, newRentalDate, newReturnDate, newRentalPrice);
+                CarRentalManager.updateRental(OldcustomerName, OldrentalDate, updateCarRental);
+                break;
             
+            case 4:
+                System.out.println("Enter the customer name that you want to delete: ");
+                String customerName=sc.nextLine();
+
+                System.out.println("Enter the rental date that you want to delete: ");
+                String rentaldate=sc.nextLine();
+
+                CarRentalManager.deleteRental(customerName,rentaldate);
+                break;
+            
+            case 5:
+                System.out.println("Enter the Car Model you want to search: ");
+                String carModel=sc.nextLine();
+                CarRentalManager.searchRentalsByCarModel(carModel);
+                break;
+
+            case 6:
+                System.out.println("Enter the date from which you want to filter it out: ");
+                String rentaldates=sc.nextLine();
+                CarRentalManager.filterRentalsByDate(rentaldates);
+                break;
+
+            case 7:
+                System.out.println("Exiting Application...");
+                sc.close();
+
+            default:
+                System.out.println("Invalid option!!!");
+            
+                              
         }
 
-        sc.close();
+         
         
         
 
